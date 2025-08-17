@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->timestamp('verified_at')->nullable();
             $table->text('verification_notes')->nullable();
-            $table->string('qr_code_path');
+            $table->string('qr_code_path')->nullable();
             $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

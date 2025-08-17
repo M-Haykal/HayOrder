@@ -8,6 +8,7 @@ use App\Http\Controllers\Owner\CategoryController;
 use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\OrderController;
 use App\Http\Controllers\Owner\OwnerController;
+use App\Http\Controllers\User\RestaurantController;
 
 
 
@@ -26,8 +27,10 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth', 'is_owner'])->group(function () {
-    Route::prefix('/restorant/{slug}/dashboard')->group(function () {
-        Route::get('/home', [OwnerController::class, 'index'])
+    Route::post('/restaurant/create', [RestaurantController::class, 'store'])
+        ->name('restaurant.store');
+    Route::prefix('/restaurant/{restaurant:slug}/dashboard')->group(function () {
+        Route::get('/', [OwnerController::class, 'index'])
             ->name('owner.dashboard.home');
         Route::get('/category', [CategoryController::class, 'index'])
             ->name('owner.dashboard.category');

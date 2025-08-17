@@ -23,7 +23,17 @@ class RestaurantResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'approved' => 'Approved',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->default('pending'),
+                Forms\Components\DateTimePicker::make('verified_at')
+                    ->label('Verified At'),
+                Forms\Components\TextArea::make('verification_notes') 
+                    ->label('Verification Notes'),
             ]);
     }
 
@@ -31,11 +41,14 @@ class RestaurantResource extends Resource
     {
         return $table
             ->columns([
-                //
+
+                Tables\Columns\TextColumn::make('id'),
+                Tables\Columns\TextColumn::make('name_restaurant'),
+                Tables\Columns\TextColumn::make('slug'),
+                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('address'),
             ])
-            ->filters([
-                //
-            ])
+            ->filters([])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])

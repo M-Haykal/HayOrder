@@ -12,6 +12,7 @@ class Restaurant extends Model
 
     protected $fillable = [
         'name_restaurant',
+        'address',
         'slug',
         'status',
         'verified_at',
@@ -25,6 +26,26 @@ class Restaurant extends Model
         return $this->belongsTo(User::class, 'owner_id');
     }
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
+
+    public function tables()
+    {
+        return $this->hasMany(Table::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
@@ -33,5 +54,4 @@ class Restaurant extends Model
             $restaurant->slug = Str::slug($restaurant->name_restaurant) . '-' . Str::random(10);
         });
     }
-
 }
