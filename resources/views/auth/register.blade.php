@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Register | Minia - Minimal Admin & Dashboard Template</title>
+    <title>Register | HayOrder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -12,14 +12,14 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- preloader css -->
-    <link rel="stylesheet" href="{{ asset('css/minia/preloader.min.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/preloader.min.css') }}" type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link href="{{ asset('css/minia/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset('css/minia/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('css/minia/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -36,7 +36,7 @@
                                 <div class="mb-4 mb-md-5 text-center">
                                     <a href="index.html" class="d-block auth-logo">
                                         <img src="assets/images/logo-sm.svg" alt="" height="28"> <span
-                                            class="logo-txt">Minia</span>
+                                            class="logo-txt">HayOrder</span>
                                     </a>
                                 </div>
                                 <div class="auth-content my-auto">
@@ -118,14 +118,6 @@
                                         <p class="text-muted mb-0">Already have an account ? <a href="{{ route('login') }}"
                                                 class="text-primary fw-semibold"> Login </a> </p>
                                     </div>
-                                </div>
-                                <div class="mt-4 mt-md-5 text-center">
-                                    <p class="mb-0">©
-                                        <script>
-                                            document.write(new Date().getFullYear())
-                                        </script> Minia . Crafted with <i
-                                            class="mdi mdi-heart text-danger"></i> by Themesbrand
-                                    </p>
                                 </div>
                             </div>
                         </div>

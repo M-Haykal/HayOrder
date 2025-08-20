@@ -4,19 +4,19 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Login | Minia - Minimal Admin & Dashboard Template</title>
+        <title>Login | HayOrder</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesbrand" name="author" />
         <!-- preloader css -->
-        <link rel="stylesheet" href="{{ asset('css/minia/preloader.min.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('css/preloader.min.css') }}" type="text/css" />
 
         <!-- Bootstrap Css -->
-        <link href="{{ asset('css/minia/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="{{ asset('css/minia/icons.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="{{ asset('css/minia/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -32,13 +32,13 @@
                                 <div class="d-flex flex-column h-100">
                                     <div class="mb-4 mb-md-5 text-center">
                                         <a href="index.html" class="d-block auth-logo">
-                                            <img src="assets/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">Minia</span>
+                                            <img src="assets/images/logo-sm.svg" alt="" height="28"> <span class="logo-txt">HayOrder</span>
                                         </a>
                                     </div>
                                     <div class="auth-content my-auto">
                                         <div class="text-center">
                                             <h5 class="mb-0">Welcome Back !</h5>
-                                            <p class="text-muted mt-2">Sign in to continue to Minia.</p>
+                                            <p class="text-muted mt-2">Sign in to continue to HayOrder.</p>
                                         </div>
                                         <form class="mt-4 pt-2" action="{{ route('login') }}" method="POST">
                                             @csrf
@@ -56,11 +56,11 @@
                                                     <div class="flex-grow-1">
                                                         <label class="form-label" for="password">Password</label>
                                                     </div>
-                                                    {{-- <div class="flex-shrink-0">
+                                                    <div class="flex-shrink-0">
                                                         <div class="">
-                                                            <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a>
+                                                            <a href="#" class="text-muted">Forgot password?</a>
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="input-group auth-pass-inputgroup">
@@ -113,12 +113,10 @@
 
                                         <div class="mt-5 text-center">
                                             <p class="text-muted mb-0">Don't have an account ? <a href="{{ route('register') }}"
-                                                    class="text-primary fw-semibold"> Signup now </a> </p>
+                                                    class="text-primary fw-semibold"> Register now </a> </p>
                                         </div>
                                     </div>
-                                    <div class="mt-4 mt-md-5 text-center">
-                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Minia   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Owner\CashierController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Owner\TableController;
 use App\Http\Controllers\Owner\CategoryController;
@@ -26,6 +27,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 });
 
+Route::middleware('auth')->post('logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::middleware(['auth', 'is_owner'])->group(function () {
     Route::post('/restaurant/create', [RestaurantController::class, 'store'])
         ->name('restaurant.store');
@@ -38,7 +41,11 @@ Route::middleware(['auth', 'is_owner'])->group(function () {
             ->name('owner.dashboard.menu');
         Route::get('/tables', [TableController::class, 'index'])
             ->name('owner.dashboard.tables');
+        Route::post('/tables', [TableController::class, 'store'])
+            ->name('owner.dashboard.tables.store');
         Route::get('/orders', [OrderController::class, 'index'])
             ->name('owner.dashboard.orders');
+        Route::get('/cashier', [CashierController::class, 'index'])
+            ->name('owner.dashboard.cashier');
     });
 });
