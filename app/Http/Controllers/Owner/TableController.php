@@ -34,10 +34,21 @@ class TableController extends Controller
 
         $table = Table::create([
             'table_number' => $request->table_number,
-            'qr_code_path' => "storage/" . $filePath, 
+            'qr_code_path' => $filePath, 
             'restaurant_id' => $restaurant->id,
         ]);
 
         return redirect()->back()->with('success', "Table {$request->table_number} berhasil ditambahkan dengan QR Code.");
+    }
+
+    public function destroy(Restaurant $restaurant, Table $table)
+    {
+        if ($table->qr_code_path) {
+            Storage::disk('public')->delete($table->qr_code_path);
+        }
+
+        $table->delete();
+
+        return redirect()->back()->with('success', 'Table berhasil dihapus.');
     }
 }

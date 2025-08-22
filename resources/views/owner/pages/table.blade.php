@@ -19,13 +19,14 @@
     </div>
 
     <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Responsive table</h4>
-            <p class="card-title-desc">
-                Create responsive tables by wrapping any <code>.table</code> in
-                <code>.table-responsive</code>
-                to make them scroll horizontally on small devices (under 768px).
-            </p>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="text-header">
+                <h4 class="card-title">Data Table {{ $restaurant->name_restaurant }}</h4>
+                <p>Create and manage your table for the restaurant.</p>
+            </div>
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createTable">
+                Create New Table
+            </button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -45,15 +46,20 @@
                                 <td>{{ $table->table_number }}</td>
                                 <td>
                                     @if ($table->qr_code_path)
-                                        <img src="{{ asset('storage/' . $table->qr_code_path) }}" alt="{{ $table->table_number }}"
-                                            width="80" class="img-thumbnail">
+                                        <img src="{{ asset('storage/' . $table->qr_code_path) }}"
+                                            alt="{{ $table->table_number }}" width="80" class="">
                                     @else
                                         <span class="text-muted">No QR Code</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    <form
+                                        action="{{ route('owner.dashboard.tables.destroy', ['restaurant' => $restaurant->slug, 'table' => $table]) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
@@ -69,10 +75,6 @@
         </div>
         <!-- end card body -->
     </div>
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTable">
-        Launch demo modal
-    </button>
 
     @include('owner.modals.table.store')
 @endsection

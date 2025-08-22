@@ -10,16 +10,10 @@ class OwnerController extends Controller
 {
     public function index(Restaurant $restaurant)
     {
-        $restaurant = Restaurant::withCount(['categories', 'menus', 'tables', 'orders'])
-            ->where('slug', $restaurant->slug)
-            ->firstOrFail();
+        $restaurant->loadCount(['categories', 'menus', 'tables', 'orders']);
 
         return view('owner.pages.dashboard', [
             'restaurant' => $restaurant,
-            'categories' => $restaurant->categories_count,
-            'menus' => $restaurant->menus_count,
-            'tables' => $restaurant->tables_count,
-            'orders' => $restaurant->orders_count,
         ]);
     }
 }

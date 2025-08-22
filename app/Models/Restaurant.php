@@ -28,22 +28,22 @@ class Restaurant extends Model
 
     public function categories()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class, 'restaurant_id', 'id');
     }
 
     public function menus()
     {
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(Menu::class, 'restaurant_id', 'id');
     }
 
     public function tables()
     {
-        return $this->hasMany(Table::class);
+        return $this->hasMany(Table::class, 'restaurant_id', 'id');
     }
 
     public function orders()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'restaurant_id', 'id');
     }
 
     protected static function boot()

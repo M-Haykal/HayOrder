@@ -37,10 +37,18 @@ Route::middleware(['auth', 'is_owner'])->group(function () {
             ->name('owner.dashboard.home');
         Route::get('/category', [CategoryController::class, 'index'])
             ->name('owner.dashboard.category');
+        Route::post('/category', [CategoryController::class, 'store'])
+            ->name('owner.dashboard.category.store');
+        Route::put('/category/{category}', [CategoryController::class, 'update'])
+            ->name('owner.dashboard.category.update');
+        Route::delete('/category/{category}', [CategoryController::class, 'destroy'])
+            ->name('owner.dashboard.category.destroy');
         Route::get('/menu', [MenuController::class, 'index'])
             ->name('owner.dashboard.menu');
         Route::get('/tables', [TableController::class, 'index'])
             ->name('owner.dashboard.tables');
+        Route::delete('/tables/{table}', [TableController::class, 'destroy'])
+            ->name('owner.dashboard.tables.destroy');
         Route::post('/tables', [TableController::class, 'store'])
             ->name('owner.dashboard.tables.store');
         Route::get('/orders', [OrderController::class, 'index'])

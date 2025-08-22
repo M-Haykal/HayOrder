@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Restaurant;
 use App\Observers\RestaurantObserver;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,8 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('owner.*', function ($view) {
-            $view->with('restaurant', request()->route('restaurant'));
+        View::composer(['owner.*', 'user.*'], function ($view) {
+            $view->with(['restaurant' => request()->route('restaurant'), 'user' => Auth::user()]);
         });
         Restaurant::observe(RestaurantObserver::class);
     }

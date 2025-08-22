@@ -204,7 +204,7 @@
                         </div>
                     </div>
 
-                   
+
 
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item bg-light-subtle border-start border-end"
@@ -216,8 +216,11 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a class="dropdown-item" href="apps-contacts-profile.html"><i
-                                    class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a>
+                            {{-- <a class="dropdown-item" href="apps-contacts-profile.html"><i
+                                    class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</a> --}}
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#detailProfile{{ $user->id }}"><i
+                                    class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</button>
                             <a class="dropdown-item" href="auth-lock-screen.html"><i
                                     class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock Screen</a>
                             <div class="dropdown-divider"></div>
@@ -314,6 +317,7 @@
     </div>
     <!-- END layout-wrapper -->
 
+    @include('owner.modals.profile.detail_profile', ['profile' => auth()->user()->restaurants->first()])
 
     <!-- Right Sidebar -->
     <div class="right-bar">

@@ -19,13 +19,14 @@
     </div>
 
     <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Responsive table</h4>
-            <p class="card-title-desc">
-                Create responsive tables by wrapping any <code>.table</code> in
-                <code>.table-responsive</code>
-                to make them scroll horizontally on small devices (under 768px).
-            </p>
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="text-header">
+                <h4 class="card-title">Data Category {{ $restaurant->name_restaurant }}</h4>
+                <p class="card-title-desc">Create and manage your categories for the restaurant.</p>
+            </div>
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createCategory">
+                Create New Category
+            </button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -44,16 +45,21 @@
                                 <th scope="row">{{ $index + 1 }}</th>
                                 <td>{{ $category->name }}</td>
                                 <td>
-                                    @if ($category->image)
-                                        <img src="{{ asset('storage/' . $category->image) }}" alt="{{ $category->name }}"
-                                            width="60" class="img-thumbnail">
+                                    @if ($category->image_category)
+                                        <img src="{{ asset('storage/' . $category->image_category) }}" alt="{{ $category->name }}"
+                                            width="80" class="img-thumbnail">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="#editCategory{{ $category->id }}">Edit</button>
+                                    <form action="{{ route('owner.dashboard.category.destroy', [$restaurant->slug, $category->id]) }}" method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
@@ -69,5 +75,6 @@
         </div>
         <!-- end card body -->
     </div>
-
+    @include('owner.modals.category.store')
+    @include('owner.modals.category.edit', ['restaurant' => $restaurant, 'categories' => $categories])
 @endsection
