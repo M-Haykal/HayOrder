@@ -9,7 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('img/logo_HayOrder.png') }}">
 
     <!-- plugin css -->
     <link href="{{ asset('libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet"
@@ -49,20 +49,20 @@
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="assets/images/logo-sm.svg" alt="" height="24">
+                                <img src="{{ asset('img/logo_HayOrder.png') }}" alt="" height="40">
                             </span>
                             <span class="logo-lg">
-                                <img src="assets/images/logo-sm.svg" alt="" height="24"> <span
+                                <img src="{{ asset('img/logo_HayOrder.png') }}" alt="" height="40"> <span
                                     class="logo-txt">HayOrder</span>
                             </span>
                         </a>
 
                         <a href="index.html" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="assets/images/logo-sm.svg" alt="" height="24">
+                                <img src="{{ asset('img/logo_HayOrder.png') }}" alt="" height="40">
                             </span>
                             <span class="logo-lg">
-                                <img src="assets/images/logo-sm.svg" alt="" height="24"> <span
+                                <img src="{{ asset('img/logo_HayOrder.png') }}" alt="" height="40"> <span
                                     class="logo-txt">HayOrder</span>
                             </span>
                         </a>
@@ -249,25 +249,30 @@
 
                         <li>
                             <a href="{{ route('owner.dashboard.home', ['restaurant' => $restaurant->slug]) }}">
-                                <i data-feather="home"></i>
+                                <i class="fa-solid fa-house"></i>
                                 <span data-key="t-dashboard">Dashboard</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('owner.dashboard.category', ['restaurant' => $restaurant->slug]) }}">
-                                <i data-feather="grid"></i>
+                                <i class="fa-solid fa-list"></i>
                                 <span data-key="t-categories">Category</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('owner.dashboard.menu', ['restaurant' => $restaurant->slug]) }}">
-                                <i data-feather="users"></i>
+                                <i class="fa-solid fa-utensils"></i>
+                                <span data-key="t-menus">Menu</span>
+                            </a>
+                        <li>
+                            <a href="{{ route('owner.dashboard.cashier', ['restaurant' => $restaurant->slug]) }}">
+                                <i class="fa-solid fa-users"></i>
                                 <span data-key="t-cashier">Cashier</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('owner.dashboard.tables', ['restaurant' => $restaurant->slug]) }}">
-                                <i data-feather="users"></i>
+                                <i class="fa-solid fa-chair"></i>
                                 <span data-key="t-table">Table</span>
                             </a>
                         </li>

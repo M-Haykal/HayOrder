@@ -13,7 +13,7 @@
                         <input type="number" class="form-control" id="table_number" name="table_number" required
                             placeholder="Input Table Number">
                     </div>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save create</button>
                 </form>
             </div>
             <div class="modal-footer">

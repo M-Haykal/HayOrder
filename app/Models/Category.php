@@ -18,4 +18,9 @@ class Category extends Model
     {
         return $this->belongsTo(Restaurant::class);
     }
+
+    // public function menus()
+    // {
+    //     return $this->hasMany(Menu::class, 'category_id', 'id');
+    // }
 }

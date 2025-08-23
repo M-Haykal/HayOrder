@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'cashier' => [
+            'driver' => 'session',
+            'provider' => 'cashier_restaurant',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+        'cashier_restaurant' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CashierRestaurant::class,
         ],
 
         // 'users' => [

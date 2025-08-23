@@ -46,6 +46,11 @@ class Restaurant extends Model
         return $this->hasMany(Order::class, 'restaurant_id', 'id');
     }
 
+    public function cashiers()
+    {
+        return $this->hasMany(CashierRestaurant::class, 'restaurant_id', 'id');
+    }
+
     protected static function boot()
     {
         parent::boot();
