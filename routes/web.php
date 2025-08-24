@@ -10,7 +10,6 @@ use App\Http\Controllers\Owner\MenuController;
 use App\Http\Controllers\Owner\OrderController;
 use App\Http\Controllers\Owner\OwnerController;
 use App\Http\Controllers\User\RestaurantController;
-use App\Livewire\MenuRestaurant;
 
 
 
@@ -19,7 +18,7 @@ Route::get('/', function () {
 })->name('start');
 
 
-Route::get('/restaurant/{slug}/table/{table}/menu', MenuRestaurant::class)
+Route::get('/restaurant/{restaurant:slug}/table/{table}/menu', [UserController::class, 'showMenu'])
     ->name('user.menu.show');
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
