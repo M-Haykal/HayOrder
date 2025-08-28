@@ -51,6 +51,11 @@ class Restaurant extends Model
         return $this->hasMany(CashierRestaurant::class, 'restaurant_id', 'id');
     }
 
+    public function restaurantDocuments()
+    {
+        return $this->hasMany(RestaurantDocument::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

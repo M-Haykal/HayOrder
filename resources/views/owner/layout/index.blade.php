@@ -221,7 +221,7 @@
                             <button type="button" class="dropdown-item" data-bs-toggle="modal"
                                 data-bs-target="#detailProfile{{ $user->id }}"><i
                                     class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i> Profile</button>
-                            <a class="dropdown-item" href="auth-lock-screen.html"><i
+                            <a class="dropdown-item" href="{{ route('start') }}"><i
                                     class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock Screen</a>
                             <div class="dropdown-divider"></div>
                             <form action="{{ route('logout') }}" method="POST">
@@ -247,35 +247,64 @@
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title" data-key="t-menu">Menu</li>
 
-                        <li>
-                            <a href="{{ route('owner.dashboard.home', ['restaurant' => $restaurant->slug]) }}">
-                                <i class="fa-solid fa-house"></i>
-                                <span data-key="t-dashboard">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('owner.dashboard.category', ['restaurant' => $restaurant->slug]) }}">
-                                <i class="fa-solid fa-list"></i>
-                                <span data-key="t-categories">Category</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('owner.dashboard.menu', ['restaurant' => $restaurant->slug]) }}">
-                                <i class="fa-solid fa-utensils"></i>
-                                <span data-key="t-menus">Menu</span>
-                            </a>
-                        <li>
-                            <a href="{{ route('owner.dashboard.cashier', ['restaurant' => $restaurant->slug]) }}">
-                                <i class="fa-solid fa-users"></i>
-                                <span data-key="t-cashier">Cashier</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('owner.dashboard.tables', ['restaurant' => $restaurant->slug]) }}">
-                                <i class="fa-solid fa-chair"></i>
-                                <span data-key="t-table">Table</span>
-                            </a>
-                        </li>
+                        @if ($restaurant->restaurantDocuments->count() == 0)
+                            <!-- Hanya tampilkan menu Document Restaurant jika dokumen kosong -->
+                            <li>
+                                <a
+                                    href="{{ route('owner.dashboard.documents', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-file"></i>
+                                    <span data-key="t-documents">Document Restaurant</span>
+                                    <span class="badge bg-danger ms-2">Required</span>
+                                </a>
+                            </li>
+
+                            <!-- Tambahkan pesan informasi -->
+                            <li class="menu-info mt-3">
+                                <div class="alert alert-warning m-2" role="alert">
+                                    <i class="fa-solid fa-exclamation-triangle me-2"></i>
+                                    Please complete your restaurant document to access all features
+                                </div>
+                            </li>
+                        @else
+                            <!-- Tampilkan semua menu kecuali Document Restaurant jika dokumen sudah ada -->
+                            <li>
+                                <a href="{{ route('owner.dashboard.home', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-house"></i>
+                                    <span data-key="t-dashboard">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="{{ route('owner.dashboard.category', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-list"></i>
+                                    <span data-key="t-categories">Category</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('owner.dashboard.menu', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-utensils"></i>
+                                    <span data-key="t-menus">Menu</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('owner.dashboard.cashier', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-users"></i>
+                                    <span data-key="t-cashier">Cashier</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('owner.dashboard.tables', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-chair"></i>
+                                    <span data-key="t-table">Table</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('owner.dashboard.orders', ['restaurant' => $restaurant->slug]) }}">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                    <span data-key="t-order">Orders</span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -483,6 +512,8 @@
     <script src="{{ asset('js/pages/dashboard.init.js') }}"></script>
 
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </body>
 

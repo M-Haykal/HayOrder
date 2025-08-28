@@ -32,20 +32,20 @@
                     @php
                         $restaurant = auth()->user()->restaurants()->latest()->first();
                     @endphp
-                    @if ($restaurant && $restaurant->status === 'approved')
+                    @if (!$restaurant)
+                        <p class="mb-4">Hello {{ auth()->user()->name }}! entrust your restaurant's ordering system to us.
+                        </p>
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                            data-bs-target="#createRestaurant">Create Restaurant</button>
+                    @elseif ($restaurant->restaurantDocuments->count() == 0)
+                        <p class="mb-4">Hello {{ auth()->user()->name }}! please upload your restaurant documents.</p>
+                        <a href="{{ route('owner.dashboard.documents', ['restaurant' => $restaurant->slug]) }}"
+                            class="btn btn-success btn-lg">Go to Document</a>
+                    @else
                         <p class="mb-4">Hello {{ auth()->user()->name }}! here's how to access your restaurant dashboard.
                         </p>
                         <a href="{{ route('owner.dashboard.home', ['restaurant' => $restaurant->slug]) }}"
                             class="btn btn-success btn-lg">Go to Dashboard</a>
-                    @elseif (!$restaurant)
-                        <p class="mb-4">Hello {{ auth()->user()->name }}! entrust your restaurant's ordering system to
-                            us.</p>
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-                            data-bs-target="#createRestaurant">Create Restaurant</button>
-                    @elseif ($restaurant && $restaurant->status !== 'approved')
-                        <p class="mb-4">Hello {{ auth()->user()->name }}! please wait while your restaurant is being
-                            reviewed.</p>
-                        <button class="btn btn-secondary btn-lg" disabled>Waiting for Approval</button>
                     @endif
                 @endguest
             </div>

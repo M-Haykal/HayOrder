@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Route::get('/restaurant/{restaurant:slug}/table/{table}/menu', [UserController::class, 'showMenu'])
     ->name('user.menu.show');
+Route::post('/restaurant/{restaurant:slug}/table/{table}/order', [UserController::class, 'store'])
+    ->name('user.menu.store');
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -77,5 +79,15 @@ Route::middleware(['auth', 'is_owner'])->group(function () {
             ->name('owner.dashboard.cashier.update');
         Route::delete('/cashier/{cashier}', [CashierController::class, 'destroy'])
             ->name('owner.dashboard.cashier.destroy');
+            
+        // Owner Document Restaurant Routes
+        Route::get('/documents', [OwnerController::class, 'documents'])
+            ->name('owner.dashboard.documents');
+        Route::post('/documents', [OwnerController::class, 'storeDocument'])
+            ->name('owner.dashboard.documents.store');
+        Route::put('/documents/{document}', [OwnerController::class, 'updateDocuments'])
+            ->name('owner.dashboard.documents.update');
+        Route::delete('/documents/{document}', [OwnerController::class, 'destroyDocuments'])
+            ->name('owner.dashboard.documents.destroy');
     });
 });

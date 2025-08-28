@@ -24,7 +24,8 @@
                 <h4 class="card-title">Data Category {{ $restaurant->name_restaurant }}</h4>
                 <p class="card-title-desc">Create and manage your categories for the restaurant.</p>
             </div>
-            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createCategory">
+            <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal"
+                data-bs-target="#createCategory">
                 Create New Category
             </button>
         </div>
@@ -46,8 +47,8 @@
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     @if ($category->image_category)
-                                        <img src="{{ asset('storage/' . $category->image_category) }}" alt="{{ $category->name }}"
-                                            width="80" class="img-thumbnail">
+                                        <img src="{{ asset('storage/' . $category->image_category) }}"
+                                            alt="{{ $category->name }}" width="80" class="img-thumbnail">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
@@ -55,7 +56,9 @@
                                 <td>
                                     <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
                                         data-bs-target="#editCategory{{ $category->id }}">Edit</button>
-                                    <form action="{{ route('owner.dashboard.category.destroy', [$restaurant->slug, $category->id]) }}" method="post" class="d-inline">
+                                    <form
+                                        action="{{ route('owner.dashboard.category.destroy', [$restaurant->slug, $category->id]) }}"
+                                        method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -76,5 +79,7 @@
         <!-- end card body -->
     </div>
     @include('owner.modals.category.store')
-    @include('owner.modals.category.edit', ['restaurant' => $restaurant, 'categories' => $categories])
+    @foreach ($categories as $category)
+        @include('owner.modals.category.edit', ['restaurant' => $restaurant, 'categories' => $categories])
+    @endforeach
 @endsection

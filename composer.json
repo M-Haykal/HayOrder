@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.6",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "tymon/jwt-auth": "2.1.1",
         "wire-elements/modal": "3.0.2"
     },
     "require-dev": {
